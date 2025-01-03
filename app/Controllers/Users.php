@@ -40,14 +40,18 @@ class Users extends BaseController
     public function login()
     {
         if ($this->request->getMethod() === 'post') {
+            $data = $this->request->getPost();
+            echo json_encode($data); die();
+            
             $email = $this->request->getPost('email');
             $password = $this->request->getPost('password');
-            echo json_encode($this->request->getPost()); die();
 
             $user = $this->userModel->where('email', $email)->first();
             if ($user && password_verify($password, $user['password'])) {
                 session()->set('user', $user);
                 return redirect()->to('/dashboard');
+            } else {
+                return redirect()->to('/login')->with('error', 'Invalid email or password.');
             }
 
             return redirect()->back()->with('error', 'Invalid credentials.');

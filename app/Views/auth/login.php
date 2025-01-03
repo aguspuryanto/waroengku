@@ -1,11 +1,11 @@
-<?php echo view('layouts/auth'); ?>
+<?= $this->extend('layouts/auth') ?>
 
-  <!-- show error message -->
-  <?php if(session()->getFlashdata('error')): ?>
-    <div class="alert alert-danger">
-      <?= session()->getFlashdata('error'); ?>
-    </div>
-  <?php endif; ?>
+<?= $this->section('content') ?>
+
+    <!-- show error message -->
+    <?php if (session()->getFlashdata('error')): ?>
+      <div class="alert alert-danger"><?= session()->getFlashdata('error'); ?></div>
+    <?php endif; ?>
 
     <div class="position-relative">
       <div class="authentication-wrapper authentication-basic container-p-y">
@@ -87,6 +87,7 @@
               <p class="mb-5">Please sign-in to your account and start the adventure</p>
 
               <form id="formAuthentication" class="mb-5" action="<?= base_url('login'); ?>" method="POST">
+                <?= csrf_field(); ?>
                 <div class="form-floating form-floating-outline mb-5">
                   <input
                     type="text"
@@ -157,3 +158,5 @@
         </div>
       </div>
     </div>
+
+<?= $this->endSection() ?>
