@@ -9,38 +9,55 @@ class Purchases extends Model
     protected $table            = 'purchases';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
-    protected $returnType       = \App\Entities\Purchases::class;
-    protected $useSoftDeletes   = false;
-    protected $protectFields    = true;
-    protected $allowedFields    = [];
 
-    protected bool $allowEmptyInserts = false;
-    protected bool $updateOnlyChanged = true;
+    protected $allowedFields    = [
+        'purchase_number',
+        'supplier_id',
+        'total_amount',
+        'purchase_date',
+        'status',
+        'created_at',
+        'updated_at',
+    ];
 
-    protected array $casts = [];
-    protected array $castHandlers = [];
-
-    // Dates
-    protected $useTimestamps = false;
-    protected $dateFormat    = 'datetime';
+    protected $useTimestamps = true;
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';
-    protected $deletedField  = 'deleted_at';
 
-    // Validation
-    protected $validationRules      = [];
-    protected $validationMessages   = [];
-    protected $skipValidation       = false;
-    protected $cleanValidationRules = true;
+    /**
+     * Retrieve all purchases with supplier details.
+     *
+     * @return array
+     */
+    public function getPurchasesWithSupplier()
+    {
+        return $this->select('purchases.*, suppliers.name as supplier_name')
+                    ->join('suppliers', 'suppliers.id = purchases.supplier_id')
+                    ->findAll();
+    }
 
-    // Callbacks
-    protected $allowCallbacks = true;
-    protected $beforeInsert   = [];
-    protected $afterInsert    = [];
-    protected $beforeUpdate   = [];
-    protected $afterUpdate    = [];
-    protected $beforeFind     = [];
-    protected $afterFind      = [];
-    protected $beforeDelete   = [];
-    protected $afterDelete    = [];
+    /**
+     * Retrieve purchase by ID with supplier details.
+     *
+     * @param int $id
+     * @return array|null
+     */
+    public function getPurchaseById($id)
+    {
+        return $this->select('purchases.*, suppliers.name as supplier_name')
+                    ->join('suppliers', 'suppliers.id = purchases.supplier_id')
+                    ->where('purchases.id', $id)
+                    ->first();
+    }
+
+    /**
+     * Retrieve all purchase records for the current day.
+     *
+     * @return array
+     */
+    public function getTodayPurchases()
+    {
+        $today = date('Y-m-d');
+        return $this->where('DATE(purchase_date)', $today)->findAll();
+    }
 }

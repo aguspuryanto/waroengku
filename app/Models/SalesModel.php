@@ -79,6 +79,17 @@ class SalesModel extends Model
     }
 
     /**
+     * Retrieve all sales records for the current day.
+     *
+     * @return array
+     */
+    public function getTodaySales()
+    {
+        $today = date('Y-m-d');
+        return $this->where('DATE(sale_date)', $today)->findAll();
+    }
+
+    /**
      * Fungsi custom untuk mendapatkan penjualan berdasarkan status pembayaran.
      */
     public function getSalesByPaymentStatus(string $status)

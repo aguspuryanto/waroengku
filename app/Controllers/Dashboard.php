@@ -17,7 +17,7 @@ class Dashboard extends BaseController
         $this->salesModel = new \App\Models\SalesModel();
         $this->productModel = new \App\Models\ProductModel();
         $this->userModel = new \App\Models\UserModel();
-        $this->purchasesModel = new \App\Models\PurchasesModel();
+        $this->purchasesModel = new \App\Models\Purchases();
     }
 
     public function index()

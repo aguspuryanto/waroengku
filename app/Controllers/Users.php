@@ -39,9 +39,9 @@ class Users extends BaseController
     // Login
     public function login()
     {
-        if ($this->request->getMethod() === 'post') {
-            $data = $this->request->getPost();
-            echo json_encode($data); die();
+        if ($this->request->getMethod() === 'POST') {
+            // $data = $this->request->getPost();
+            // echo json_encode($data); die();
             
             $email = $this->request->getPost('email');
             $password = $this->request->getPost('password');

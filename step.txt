@@ -71,8 +71,7 @@ File created: APPPATH/Database/Seeds/Sales.php
 php spark make:seeder TestSeeder --suffix
 
 // Jalankan Seeder
-php spark migrate
-php spark db:seed TestSeeder
+php spark migrate && php spark db:seed TestSeeder
 
 ##purchases
 php spark make:scaffold Purchases --return entity
