@@ -1,0 +1,88 @@
+Desain Database
+Buat tabel-tabel berikut:
+users: Data pengguna.
+products: Master barang.
+sales: Transaksi penjualan.
+purchases: Transaksi pembelian.
+stock_logs: Pencatatan perubahan stok.
+settings: Pengaturan seperti margin harga.
+
+composer create-project codeigniter4/appstarter waroengku
+cd waroengku
+
+php spark serve
+
+##Create Database
+php spark db:create ci4_waroengku
+
+##Module Users
+php spark make:migration CreateUsersTable
+php spark make:model UserModel
+php spark make:seeder UserSeeder
+
+// Jalankan Migration & Seeder
+php spark migrate && php spark db:seed --class=UserSeeder
+OR
+php spark migrate
+php spark db:seed UserSeeder
+
+// Buat Controller
+php spark make:controller Users
+
+##Module Product
+php spark make:scaffold Product --return entity
+
+php spark make:seeder ProductSeeder
+
+// Jalankan Migration & Seeder
+php spark migrate
+php spark db:seed ProductSeeder
+
+##Module Sales
+php spark make:migration CreateSalesTable
+php spark make:model SalesModel
+php spark make:seeder SalesSeeder
+
+// Jalankan Migration & Seeder
+php spark migrate
+php spark db:seed SalesSeeder
+
+// Buat Controller
+php spark make:controller Sales
+
+#Command Generate Scaffolding
+php spark make:scaffold Sales
+
+File created: APPPATH/Controllers/Sales.php
+File created: APPPATH/Models/Sales.php
+File created: APPPATH/Database/Migrations/2022-06-04-035701_Sales.php
+File created: APPPATH/Database/Seeds/Sales.php
+
+OR
+php spark make:scaffold Sales --return entity
+
+File created: APPPATH/Controllers/Sales.php
+File created: APPPATH/Entities/Sales.php
+File created: APPPATH/Models/Sales.php
+File created: APPPATH/Database/Migrations/2022-06-04-061358_Sales.php
+File created: APPPATH/Database/Seeds/Sales.php
+
+##Creating Seeder Files
+php spark make:seeder TestSeeder --suffix
+
+// Jalankan Seeder
+php spark migrate
+php spark db:seed TestSeeder
+
+##purchases
+php spark make:scaffold Purchases --return entity
+
+#push to Github
+
+echo "# waroengku" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/aguspuryanto/waroengku.git
+git push -u origin main
