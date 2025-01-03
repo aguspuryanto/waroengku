@@ -42,6 +42,7 @@ class Users extends BaseController
         if ($this->request->getMethod() === 'post') {
             $email = $this->request->getPost('email');
             $password = $this->request->getPost('password');
+            echo json_encode($this->request->getPost()); die();
 
             $user = $this->userModel->where('email', $email)->first();
             if ($user && password_verify($password, $user['password'])) {
@@ -52,7 +53,8 @@ class Users extends BaseController
             return redirect()->back()->with('error', 'Invalid credentials.');
         }
 
-        return view('users/login');
+        // return view('users/login');
+        return view('auth/login');
     }
 
     // Logout

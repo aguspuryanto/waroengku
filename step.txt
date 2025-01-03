@@ -86,3 +86,22 @@ git commit -m "first commit"
 git branch -M main
 git remote add origin https://github.com/aguspuryanto/waroengku.git
 git push -u origin main
+
+##
+https://github.com/yadunandankushwaha/CodeIgniter-3.1.5-complete-project-with-frontend-admin.git
+CodeIgniter-3.1.5 admin (Free)
+Codeigniter 3.1.5 is the responsive admin template. It is a bootstrap customized theme template with CI Administrator and front-end theme integration. Besides, it offers amazing components like User Login, User Registration, Add-update-edit-delete blog, Blogs comment system, etc. Furthermore, it comes with the following features:
+
+Theme Integration in CI
+Login for Admin
+Forget password
+Reset password
+Full dashboard integration
+Edit profile
+Change password
+Manage USER
+
+https://github.com/kishor10d/Admin-Panel-User-Management-using-CodeIgniter
+Admin Panel User Management Demo - CodeIgniter + AdminLTE Theme
+
+cias.codeinsect.com
